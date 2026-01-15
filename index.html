@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social OutCast - Home</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+  --bg-color: #f8f9fa;
+  --text-color: #1a1a1a;
+  --accent-color: #000000;
+  --secondary-text: #666666;
+  --card-bg: #ffffff;
+  --font-main: "Inter", sans-serif;
+  --nav-height: 80px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: white;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; /* Match shop.css padding */
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: black;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.nav-links a:hover {
+  color: black;
+}
+
+.nav-links a.active {
+  font-weight: bold;
+}
+
+.nav-links img {
+  height: 20px;
+  vertical-align: middle;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Cart Icon Counter */
+/* Cart Icon Counter */
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-link svg {
+  width: 24px;
+  height: 24px;
+  stroke: black;
+  transition: stroke 0.3s ease;
+}
+
+.cart-link:hover svg {
+  stroke: black;
+}
+
+/* Disable underline for cart icon */
+.cart-link::after {
+  display: none !important;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: black;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Footer */
+/* Footer */
+footer {
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  color: black;
+  font-size: 0.85rem;
+  margin-top: auto;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 30px 20px; /* Reduced from 60px */
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Reduced from 40px */
+  text-align: center;
+}
+
+.footer-section h4 {
+  font-size: 1.1rem; /* Slightly smaller header */
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered on mobile */
+  gap: 8px;
+}
+
+.footer-section svg {
+  width: 20px; /* Slightly smaller icons */
+  height: 20px;
+  stroke: black;
+  stroke-width: 2;
+  fill: none;
+}
+
+.footer-section p {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.copyright {
+  margin-top: 20px; /* Reduced from 40px */
+  font-size: 0.8rem;
+  color: #120f0f;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-section h4 {
+    justify-content: flex-start; /* Left on desktop */
+  }
+}
+
+/* Button Standard styles */
+.btn {
+  display: inline-block;
+  background-color: rgb(139, 90, 212);
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 2px;
+  font-weight: 1px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: #482f51;
+  transform: translateY(-8px);
+}
+
+/* Layout Util */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh; /* rough footer height */
+}
+
+/* Form Styles */
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: black;
+}
+
+/* Size Selector Styles */
+.size-selector {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.size-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.size-options {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.size-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #eee;
+  background: #fff;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-btn:hover {
+  border-color: #000;
+}
+
+.size-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.product-info {
+  padding: 15px 0;
+}
+
+.product-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+}
+
+.product-info .price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+      /* Page specific styles for index.html */
+.hero {
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/Images/homepage.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+/* Hero Content Layout */
+.hero-content {
+  max-width: 900px;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Space between the glass blocks */
+}
+
+/* Glass Effect for Individual Elements */
+.hero-content h1,
+.hero-content p,
+.hero-content .btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 20px 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: fit-content; /* Only wrap the text */
+  color: white; /* Ensure visibility */
+  text-decoration: none; /* Just in case */
+}
+
+.hero-content h1 {
+  font-size: 5rem;
+  margin-bottom: 0; /* Let gap handle spacing */
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 10px; /* Slight extra space before button */
+  max-width: 600px;
+  letter-spacing: 3px;
+}
+
+.featured-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.featured-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.btn-secondary {
+  background-color: rgb(122, 106, 225);
+  color: black;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.btn-secondary:hover {
+  background-color: #bd8080;
+  color: black;
+}
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">S.O STORE</div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="NewArrivals.html">New Arrivals</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Social OutCast</h1>
+        <p>
+          Fashion that breaks the mold. Express your individuality with our
+          unique streetwear collection.
+        </p>
+        <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Location
+          </h4>
+          <p>East Legon,Bawaleshi<br />Accra, Ghana</p>
+        </div>
+        <div class="footer-section">
+          <h4>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Contact
+          </h4>
+          <p>
+            Email: info@socialoutcast.com<br />Phone: +233 599 589 341
+            <br />Phone: +233 553 490 791
+          </p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Social OutCast. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>
